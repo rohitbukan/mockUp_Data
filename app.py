@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, send_file
 from faker import Faker
 import io
+import os
 import csv
 import random
 import re
@@ -214,5 +215,7 @@ def generate_insert_sql():
 # Run
 # -------------------------------
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port, debug=False)
