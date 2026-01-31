@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Generator</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Generate <span>Data</span><br>from SQL DDL</h1>
+    <p>Upload SQL schema, preview realistic data, edit and export CSV</p>
+    <button onclick="openGenerator()">Get Started</button>
+  </div>
+</section>
+
+<section id="generator" class="generator hidden">
+  <div class="card">
+    <label>Upload SQL File</label>
+    <input type="file" id="sqlFile" accept=".sql" onchange="uploadSQL()">
+
+    <label>Or Paste DDL</label>
+    <textarea id="ddlInput" placeholder="Paste your table DDL here"></textarea>
+
+    <label>Number of Records</label>
+    <input type="number" id="rows" value="10" min="1">
+
+    <button onclick="generate()">Generate Preview</button>
+  </div>
+
+  <div class="card" id="preview" style="display:none">
+    <div class="actions">
+      <button class="secondary" onclick="addRow()">+ Add Row</button>
+      <button onclick="downloadCSV()">Generate CSV</button>
+      <button onclick="generateInsertSQL()">Generate INSERT SQL</button>
+    </div>
+
+    <div class="table-wrap">
+      <table id="table"></table>
+    </div>
+  </div>
+</section>
+
+<script src="/static/script.js"></script>
+<script>
+function openGenerator() {
+  document.getElementById("generator").classList.remove("hidden");
+  document.getElementById("generator").scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>
